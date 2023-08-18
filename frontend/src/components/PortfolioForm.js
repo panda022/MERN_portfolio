@@ -1,6 +1,10 @@
 import { useState } from 'react'
+import { usePortfoliosContext } from "../hooks/usePortfoliosContext"
+
 
 const PortfolioForm = () => {
+  const { dispatch } = usePortfoliosContext()
+
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [address, setAdress] = useState('')
@@ -29,6 +33,7 @@ const PortfolioForm = () => {
       setDescription('')
       setAdress('')
       console.log('new portfolio added:', json)
+      dispatch({type: 'CREATE_PORTFOLIO', payload: json})
     }
 
   }
